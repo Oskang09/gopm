@@ -101,6 +101,9 @@ func (m *Manager) hasPermission(scope string) bool {
 
 	first, other := nodes[0], nodes[1:]
 	cur := m.nodes[first]
+	if cur == nil { // first node can't match mean no permissions
+		return false
+	}
 
 	for _, node := range other {
 		n, ok := cur.Node[node]

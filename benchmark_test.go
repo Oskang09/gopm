@@ -30,4 +30,5 @@ func BenchmarkPermissionCheck(b *testing.B) {
 	pm.HasPermission("merchant.store.1600452598542728428")
 	pm.HasPermission("merchant.store.1600452598542728428.view.card")
 	pm.HasPermission("merchant.store.1600452598542728428.view.name ")
+	pm.HasPermissions([]string{"org.fast-reply.view"})
 }
