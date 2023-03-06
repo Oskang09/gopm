@@ -26,6 +26,9 @@ func main() {
 		"merchant.store.*",
 		"merchant.view.file",
 		"merchant.view.report",
+		"user.import.3",
+		"user.import.1000",
+		"user.import.abc",
 	})
 
 	// will add single line permission
@@ -39,6 +42,7 @@ func main() {
 
 	pm.GetPermissionChilds("merchant")           // [update store item create]
 	pm.GetPermissionChilds("merchant.view")      // [file report]
+	pm.GetPermissionInts("user.import") 		 // [1000, 3]
 	pm.HasPermission("merchant")                 // true
 	pm.HasPermission("merchant.create")          // true
 	pm.HasPermission("merchant.delete")          // false
