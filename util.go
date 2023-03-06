@@ -13,7 +13,10 @@ func (m *Manager) tryParseInt(val string) *int {
 func (m *Manager) trySliceInt(values []string) []int {
 	r := make([]int, 0)
 	for _, val := range values {
-		i, _ := strconv.Atoi(val)
+		i, err := strconv.Atoi(val)
+		if err != nil {
+			continue
+		}
 		r = append(r, i)
 	}
 	return r

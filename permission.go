@@ -53,6 +53,26 @@ func (m *Manager) GetPermissionChilds(permission string) []string {
 	return mapToSlice(cur.Values)
 }
 
+func (m *Manager) GetPermissionInts(permission string) []int {
+	nodes := strings.Split(permission, ".")
+
+	first, other := nodes[0], nodes[1:]
+	cur := m.nodes[first]
+	for _, node := range other {
+		n, ok := cur.Node[node]
+		if !ok {
+			return nil
+		}
+		cur = n
+	}
+
+	ints := m.trySliceInt(mapToSlice(cur.Values))
+	sort.Slice(ints, func(i, j int) bool {
+		return ints[i] < ints[j]
+	})
+	return ints
+}
+
 func (m *Manager) HasPermissions(scopes []string) bool {
 	for _, scope := range scopes {
 		if !m.HasPermission(scope) {
